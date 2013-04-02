@@ -7,4 +7,8 @@ class Player
     @past_givees = Array.new
     @past_givees << givee_year_zero
   end
+
+  def add_givee(givee)
+    @past_givees << givee
+  end
 end

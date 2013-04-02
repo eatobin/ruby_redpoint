@@ -8,11 +8,11 @@ class PlayerTest < Test::Unit::TestCase
     assert_equal('JerCoh', my_player.past_givees[0])
   end
 
-  #def test_book_new_author
-  #  b2 = Book.new('War And Peace')
-  #  b2.author = 'Eric Tobin'
-  #  assert_equal('Eric Tobin', b2.author)
-  #end
+  def test_add_givee
+    my_player = Player.new('Eric Tobin', 'JerCoh')
+    my_player.add_givee('SarArt')
+    assert_equal('SarArt', my_player.past_givees[1])
+  end
   #
   #def test_book_new_person
   #  b3 = Book.new('War And Peace And Donuts')
