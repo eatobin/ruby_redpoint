@@ -12,6 +12,8 @@ class PlayerTest < Test::Unit::TestCase
     my_player = Player.new('Eric Tobin', 'JerCoh')
     my_player.add_givee('SarArt')
     assert_equal('SarArt', my_player.past_givees[1])
+    my_player.add_givee('ScoTob')
+    assert_equal('ScoTob', my_player.past_givees[2])
   end
   #
   #def test_book_new_person
