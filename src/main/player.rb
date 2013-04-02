@@ -1,6 +1,5 @@
 class Player
-  attr_reader(:player_name)
-  attr_accessor(:past_givees)
+  attr_reader(:player_name, :past_givees)
 
   def initialize(player_name, givee_year_zero)
     @player_name = player_name
@@ -14,5 +13,9 @@ class Player
 
   def return_givee(gift_year)
     @past_givees[gift_year]
+  end
+
+  def set_givee(givee, year)
+    @past_givees[year] = givee
   end
 end

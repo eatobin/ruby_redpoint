@@ -10,7 +10,7 @@ class PlayerTest < Test::Unit::TestCase
 
   def test_add_givee
     my_player = Player.new('Eric Tobin', 'JerCoh')
-    assert_equal(["JerCoh", "SarArt"],my_player.add_givee('SarArt'))
+    assert_equal(["JerCoh", "SarArt"], my_player.add_givee('SarArt'))
     assert_equal('SarArt', my_player.past_givees[1])
     assert_equal(["JerCoh", "SarArt", "ScoTob"], my_player.add_givee('ScoTob'))
     assert_equal('ScoTob', my_player.past_givees[2])
@@ -22,5 +22,12 @@ class PlayerTest < Test::Unit::TestCase
     my_player.add_givee('ScoTob')
     assert_equal('JerCoh', my_player.return_givee(0))
     assert_equal('ScoTob', my_player.return_givee(2))
+  end
+
+  def test_set_givee
+    my_player = Player.new('Eric Tobin', 'JerCoh')
+    assert_equal('JerCoh', my_player.return_givee(0))
+    assert_equal('SarArt', my_player.set_givee('SarArt', 0))
+    assert_equal('SarArt', my_player.return_givee(0))
   end
 end
