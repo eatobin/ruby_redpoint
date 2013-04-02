@@ -10,23 +10,17 @@ class PlayerTest < Test::Unit::TestCase
 
   def test_add_givee
     my_player = Player.new('Eric Tobin', 'JerCoh')
-    my_player.add_givee('SarArt')
+    assert_equal(["JerCoh", "SarArt"],my_player.add_givee('SarArt'))
     assert_equal('SarArt', my_player.past_givees[1])
-    my_player.add_givee('ScoTob')
+    assert_equal(["JerCoh", "SarArt", "ScoTob"], my_player.add_givee('ScoTob'))
     assert_equal('ScoTob', my_player.past_givees[2])
   end
-  #
-  #def test_book_new_person
-  #  b3 = Book.new('War And Peace And Donuts')
-  #  p1 = Person.new
-  #  p1.name = 'Elvis'
-  #  p1.maximum_books = 77
-  #  b3.person = p1
-  #
-  #  assert_equal('Elvis', b3.person.name)
-  #  test_string_person = 'Elvis (77 books)'
-  #  test_string_book ='War And Peace And Donuts by unknown author; Checked out to Elvis'
-  #  assert_equal(test_string_person, b3.person.to_s)
-  #  assert_equal(test_string_book, b3.to_s)
-  #end
+
+  def test_return_givee
+    my_player = Player.new('Eric Tobin', 'JerCoh')
+    my_player.add_givee('SarArt')
+    my_player.add_givee('ScoTob')
+    assert_equal('JerCoh', my_player.return_givee(0))
+    assert_equal('ScoTob', my_player.return_givee(2))
+  end
 end

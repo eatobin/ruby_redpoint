@@ -11,4 +11,8 @@ class Player
   def add_givee(givee)
     @past_givees << givee
   end
+
+  def return_givee(gift_year)
+    @past_givees[gift_year]
+  end
 end
