@@ -1,3 +1,5 @@
+#My NotePad++ comment!
+
 require_relative('../main/player')
 
 class Roster
