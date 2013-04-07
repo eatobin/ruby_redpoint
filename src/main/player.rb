@@ -1,21 +1,21 @@
 class Player
-  attr_reader(:player_name, :past_givees)
+  attr_reader(:player_name, :past_givee_codes)
 
-  def initialize(player_name, givee_year_zero)
+  def initialize(player_name, givee_code_year_zero)
     @player_name = player_name
-    @past_givees = Array.new
-    @past_givees << givee_year_zero
+    @past_givee_codes = Array.new
+    @past_givee_codes << givee_code_year_zero
   end
 
-  def add_givee(givee)
-    @past_givees << givee
+  def add_givee_code(givee_code)
+    @past_givee_codes << givee_code
   end
 
-  def return_givee(gift_year)
-    @past_givees.fetch(gift_year)
+  def return_givee_code(gift_year)
+    @past_givee_codes.fetch(gift_year)
   end
 
-  def set_givee(givee, year)
-    @past_givees[year] = givee
+  def set_givee_code(givee_code, year)
+    @past_givee_codes[year] = givee_code
   end
 end

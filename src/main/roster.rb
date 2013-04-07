@@ -26,11 +26,15 @@ class Roster
     }
   end
 
-  def return_player_name(player_code)
-    @roster_list.fetch(player_code).player_name
+  def return_player_name(giver_code)
+    @roster_list.fetch(giver_code).player_name
   end
 
-  def return_givee(player_code, year)
-    @roster_list.fetch(player_code).return_givee(year)
+  def return_givee_code(giver_code, year)
+    @roster_list.fetch(giver_code).return_givee_code(year)
+  end
+
+  def set_givee_code(player_code, givee_code, year)
+    @roster_list.fetch(player_code).set_givee_code(givee_code, year)
   end
 end
