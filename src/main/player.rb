@@ -12,7 +12,7 @@ class Player
   end
 
   def return_givee(gift_year)
-    @past_givees[gift_year]
+    @past_givees.fetch(gift_year)
   end
 
   def set_givee(givee, year)
