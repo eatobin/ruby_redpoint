@@ -25,4 +25,12 @@ class Roster
                     :TroBro => Player.new('Troy Brouwer', 'DavBol'),
     }
   end
+
+  def return_player_name(player_code)
+    @roster_list.fetch(player_code).player_name
+  end
+
+  def return_givee(player_code, year)
+    @roster_list.fetch(player_code).return_givee(year)
+  end
 end
