@@ -55,4 +55,17 @@ class RosterTest < Test::Unit::TestCase
     assert_equal(:JerCoh, my_roster.return_givee_code(:SarArt, 0))
     assert_equal(:none, my_roster.return_givee_code(:SarArt, 1))
   end
+
+  def test_print_giving_roster
+    my_roster = Roster.new
+    my_roster.roster_list.clear
+    my_roster.roster_list.store(:SarArt, Player.new('Sarah Artzi', :JerCoh))
+    my_roster.roster_list.store(:EriTob, Player.new('Eric Tobin', :SarArt))
+    my_roster.roster_list.store(:JerCoh, Player.new('Jerri Cohen', :EriTob))
+    my_roster.print_giving_roster(0)
+    my_roster = Roster.new
+    puts
+    puts my_roster.print_giving_roster(0)
+
+  end
 end
