@@ -1,11 +1,10 @@
-require_relative('../main/player')
-
 class Roster
   attr_reader (:roster_list)
 
   def initialize
     @roster_list = Hash.new
     @roster_list = {
+        :TroBro => Player.new('Troy Brouwer', :DavBol),
         :AdaBur => Player.new('Adam Burish', :DunKei),
         :AndLad => Player.new('Andrew Ladd', :JoeQue),
         :AntNie => Player.new('Antti Niemi', :JonToe),
@@ -22,21 +21,42 @@ class Roster
         :NikHja => Player.new('Niklas Hjalmarsson', :BreSea),
         :PatKan => Player.new('Patrick Kane', :BryBic),
         :PatSha => Player.new('Patrick Sharp', :BriCam),
-        :TomKop => Player.new('Tomas Kopecky', :CriHue),
-        :TroBro => Player.new('Troy Brouwer', :DavBol),
+        :TomKop => Player.new('Tomas Kopecky', :CriHue)
     }
   end
 
-  def return_player_name(giver_code)
-    @roster_list.fetch(giver_code).player_name
+  class Player
+    attr_reader(:player_name, :past_givee_codes)
+
+    def initialize(player_name, givee_code_year_zero)
+      @player_name = player_name
+      @past_givee_codes = Array.new
+      @past_givee_codes << givee_code_year_zero
+    end
+
+    def add_givee_code(givee_code)
+      @past_givee_codes << givee_code
+    end
+
+    def return_givee_code(gift_year)
+      @past_givee_codes.fetch(gift_year)
+    end
+
+    def set_givee_code(givee_code, year)
+      @past_givee_codes[year] = givee_code
+    end
   end
 
-  def return_givee_code(giver_code, year)
-    @roster_list.fetch(giver_code).return_givee_code(year)
+  def return_player(player_code)
+    @roster_list.fetch(player_code)
   end
 
   def set_givee_code(player_code, givee_code, year)
-    @roster_list.fetch(player_code).set_givee_code(givee_code, year)
+    self.return_player(player_code).set_givee_code(givee_code, year)
+  end
+
+  def return_givee_code(player_code, year)
+    self.return_player(player_code).return_givee_code(year)
   end
 
   def add_new_year
@@ -52,7 +72,7 @@ class Roster
       if givee_code.eql?(:none)
         givee_name = '...nobody!! (last giver/givee pairing and a test failed - a puzzle logic error)'
       else
-        givee_name = self.return_player_name(givee_code)
+        givee_name = self.return_player(givee_code).player_name
       end
       puts player_name + ' is buying for ' + givee_name
     end
