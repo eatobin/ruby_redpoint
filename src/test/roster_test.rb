@@ -17,18 +17,14 @@ class RosterTest < Test::Unit::TestCase
 
   def test_add_new_year
     blackhawks2010 = Roster.new
-    blackhawks2010.roster_list.clear
-    blackhawks2010.roster_list.store(:SarArt, Roster::Player.new('Sarah Artzi', :JerCoh))
-    blackhawks2010.roster_list.store(:EriTob, Roster::Player.new('Eric Tobin', :SarArt))
-    blackhawks2010.roster_list.store(:JerCoh, Roster::Player.new('Jerri Cohen', :EriTob))
     blackhawks2010.add_new_year
-    assert_equal(:JerCoh, blackhawks2010.return_givee_code(:SarArt, 0))
-    assert_equal(:none, blackhawks2010.return_givee_code(:SarArt, 1))
+    assert_equal(:DunKei, blackhawks2010.return_givee_code(:AdaBur, 0))
+    assert_equal(:none, blackhawks2010.return_givee_code(:AdaBur, 1))
+    assert_equal(:none, blackhawks2010.return_givee_code(:PatSha, 1))
   end
 
   def test_print_giving_roster
     blackhawks2010 = Roster.new
-    blackhawks2010.print_giving_roster(0)
-
+    puts blackhawks2010.giving_roster_report_string(0)
   end
 end

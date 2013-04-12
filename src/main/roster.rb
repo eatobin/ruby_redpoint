@@ -25,6 +25,7 @@ class Roster
     }
   end
 
+  private
   class Player
     attr_reader(:player_name, :past_givee_codes)
 
@@ -47,6 +48,7 @@ class Roster
     end
   end
 
+  public
   def return_player(player_code)
     @roster_list.fetch(player_code)
   end
@@ -65,7 +67,21 @@ class Roster
     end
   end
 
-  def print_giving_roster(year)
+  #def print_giving_roster(year)
+  #  Hash[@roster_list.sort_by { |player_code| player_code }].each_value do |player|
+  #    player_name = player.player_name
+  #    givee_code = player.return_givee_code(year)
+  #    if givee_code.eql?(:none)
+  #      givee_name = '...nobody!! (last giver/givee pairing and a test failed - a puzzle logic error)'
+  #    else
+  #      givee_name = self.return_player(givee_code).player_name
+  #    end
+  #    puts player_name + ' is buying for ' + givee_name
+  #  end
+  #end
+
+  def giving_roster_report_string(year)
+    rr = String.new
     Hash[@roster_list.sort_by { |player_code| player_code }].each_value do |player|
       player_name = player.player_name
       givee_code = player.return_givee_code(year)
@@ -74,7 +90,8 @@ class Roster
       else
         givee_name = self.return_player(givee_code).player_name
       end
-      puts player_name + ' is buying for ' + givee_name
+      rr << player_name + " is buying for " + givee_name + "\n"
     end
+    rr
   end
 end
