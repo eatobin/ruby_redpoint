@@ -19,4 +19,10 @@ class Hat
   def discards_size
     @discards.length
   end
+
+  def discard_puck(player_code)
+    if @pucks.delete(player_code)
+      @discards.push(player_code)
+    end
+  end
 end
