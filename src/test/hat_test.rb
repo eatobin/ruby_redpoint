@@ -18,4 +18,12 @@ class HatTest < Test::Unit::TestCase
     giver_hat.pucks.clear
     assert_nil(giver_hat.draw_puck)
   end
+
+  def test_remove_puck
+    giver_hat = Hat.new(Roster.new)
+    assert_true(giver_hat.pucks.include?(:TroBro))
+    assert_equal(:TroBro, giver_hat.remove_puck(:TroBro))
+    assert_false(giver_hat.pucks.include?(:TroBro))
+    assert_nil(giver_hat.remove_puck(:TroBro))
+  end
 end

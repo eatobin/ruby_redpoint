@@ -11,4 +11,12 @@ class Hat
   def draw_puck
     @pucks.sample
   end
+
+  def remove_puck(player_code)
+    @pucks.delete(player_code)
+  end
+
+  def discards_size
+    @discards.length
+  end
 end
