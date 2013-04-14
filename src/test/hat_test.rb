@@ -40,4 +40,16 @@ class HatTest < Test::Unit::TestCase
     assert_equal(1, giver_hat.discards_size)
     assert_equal(17, giver_hat.pucks.length)
   end
+
+  def test_return_discards
+    giver_hat = Hat.new(Roster.new)
+    assert_not_nil(giver_hat.discard_puck(:TroBro))
+    assert_not_nil(giver_hat.discard_puck(:AntNie))
+    assert_equal(2, giver_hat.discards_size)
+    assert_false(giver_hat.pucks.include?(:AntNie))
+    assert_equal([], giver_hat.return_discards)
+    assert_true(giver_hat.pucks.include?(:AntNie))
+    assert_equal(0, giver_hat.discards_size)
+    assert_nil(giver_hat.return_discards)
+  end
 end

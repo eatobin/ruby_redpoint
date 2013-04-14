@@ -25,4 +25,11 @@ class Hat
       @discards.push(player_code)
     end
   end
+
+  def return_discards
+    if self.discards_size > 0
+      @pucks.concat(@discards)
+      @discards.clear
+    end
+  end
 end
