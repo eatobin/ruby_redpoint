@@ -3,7 +3,7 @@ require_relative('./hat')
 
 class Rules
   def self.givee_not_self(giver_code, givee_code)
-    !giver_code == givee_code
+    !(giver_code == givee_code)
   end
 
   def self.givee_not_repeat(giver_code, givee_code, roster, this_year)
