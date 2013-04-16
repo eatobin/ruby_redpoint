@@ -10,6 +10,12 @@ class RulesTest < Test::Unit::TestCase
     assert_true(Rules.givee_not_self(:PatSha, :AdaBur));
   end
 
+  def test_givee_not_recip
+    blackhawks2010 = Roster.new
+    assert_true(Rules.givee_not_recip(:PatSha, :AdaBur, blackhawks2010, 0))
+    assert_false(Rules.givee_not_recip(:BriCam, :PatSha, blackhawks2010, 0))
+  end
+
   def test_givee_not_repeat
     blackhawks2010 = Roster.new
     blackhawks2010.add_new_year
