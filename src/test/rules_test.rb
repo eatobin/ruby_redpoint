@@ -4,6 +4,12 @@ require_relative('../main/rules')
 require 'test/unit'
 
 class RulesTest < Test::Unit::TestCase
+  def test_givee_not_self
+    blackhawks2010 = Roster.new
+    assert_false(Rules.givee_not_self(:PatSha, :PatSha))
+    assert_true(Rules.givee_not_self(:PatSha, :AdaBur));
+  end
+
   def test_givee_not_repeat
     blackhawks2010 = Roster.new
     blackhawks2010.add_new_year

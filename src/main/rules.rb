@@ -6,6 +6,11 @@ class Rules
     !(giver_code == givee_code)
   end
 
+  def self.givee_not_recip(giver_code, givee_code, roster, this_year)
+    givee_giving_to = roster.return_givee_code(givee_code, this_year)
+    !(giver_code == givee_giving_to)
+  end
+
   def self.givee_not_repeat(giver_code, givee_code, roster, this_year)
     result = true
     counter = this_year - 1
