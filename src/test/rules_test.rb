@@ -5,9 +5,8 @@ require 'test/unit'
 
 class RulesTest < Test::Unit::TestCase
   def test_givee_not_self
-    blackhawks2010 = Roster.new
     assert_false(Rules.givee_not_self(:PatSha, :PatSha))
-    assert_true(Rules.givee_not_self(:PatSha, :AdaBur));
+    assert_true(Rules.givee_not_self(:PatSha, :AdaBur))
   end
 
   def test_givee_not_recip
