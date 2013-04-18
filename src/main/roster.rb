@@ -2,7 +2,6 @@ class Roster
   attr_reader(:roster_list)
 
   def initialize
-    @roster_list = Hash.new
     @roster_list = {
         :TroBro => Player.new('Troy Brouwer', :DavBol),
         :AdaBur => Player.new('Adam Burish', :DunKei),
