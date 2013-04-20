@@ -35,7 +35,6 @@ class RedpointRunner
       giver_hat = Hat.new(@blackhawks2010)
       giver = giver_hat.draw_puck
       givee = @givee_hat.draw_puck
-
       until giver.nil?
         until givee.nil?
           if Rules.givee_not_self(giver, givee)
