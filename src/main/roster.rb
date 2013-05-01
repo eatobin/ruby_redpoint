@@ -80,4 +80,12 @@ class Roster
     end
     rr
   end
+
+  def print_and_ask(year)
+    puts "Year #{year} Gifts:"
+    puts self.giving_roster_report_string(year)
+    puts
+    print 'Continue? (1 = yes, 0 = no): '
+    gets.chomp.to_i
+  end
 end

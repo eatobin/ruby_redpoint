@@ -3,11 +3,12 @@ require_relative('./hat')
 require_relative('./rules')
 
 class RedpointRunner
-  attr_reader(:blackhawks2010, :givee_hat, :year)
+  attr_reader(:year, :blackhawks2010, :giver_hat, :givee_hat, :giver, :givee)
 
   def initialize
-    @blackhawks2010 = Roster.new
     @year = 0
+    @blackhawks2010 = Roster.new
+
   end
 
   def puck_pass(giver, givee, year)
@@ -22,13 +23,7 @@ class RedpointRunner
   end
 
   def runner
-    puts "Year #{@year} Gifts:"
-    puts @blackhawks2010.giving_roster_report_string(0)
-    puts
-    print 'Continue? (1 = yes, 0 = no): '
-    do_next_year = gets
-    puts
-    while do_next_year.to_i.eql?(1)
+    while @blackhawks2010.print_and_ask(@year).eql?(1)
       @year = @year + 1
       @blackhawks2010.add_new_year
       @givee_hat = Hat.new(@blackhawks2010)
@@ -56,13 +51,9 @@ class RedpointRunner
         giver = giver_hat.draw_puck
         givee = @givee_hat.draw_puck
       end
-      puts "Year #{@year} Gifts:"
-      puts @blackhawks2010.giving_roster_report_string(@year)
-      puts
-      print 'Continue? (1 = yes, 0 = no): '
-      do_next_year = gets
       puts
     end
+    puts
     puts 'This was fun!'
     puts 'Talk about a position with Redpoint?'
     puts 'Please call: Eric Tobin 773-325-1516'
