@@ -8,7 +8,6 @@ class Redpoint
   def initialize
     @year = 0
     @blackhawks2010 = Roster.new
-
   end
 
   def runner
