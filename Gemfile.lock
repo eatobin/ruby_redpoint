@@ -1,10 +1,17 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    mynyml-redgreen (0.7.1)
+      term-ansicolor (>= 1.0.4)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
     test-unit (2.5.5)
+    tins (0.13.1)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
+  mynyml-redgreen
   test-unit

@@ -1,6 +1,7 @@
 require_relative('../main/hat')
 require_relative('../main/roster')
 require 'test/unit'
+require 'redgreen'
 
 class HatTest < Test::Unit::TestCase
   def test_hat

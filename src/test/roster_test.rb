@@ -1,5 +1,6 @@
 require_relative('../main/roster')
 require 'test/unit'
+require 'redgreen'
 
 class RosterTest < Test::Unit::TestCase
   def test_return_givee

@@ -2,6 +2,7 @@ require_relative('../main/hat')
 require_relative('../main/roster')
 require_relative('../main/rules')
 require 'test/unit'
+require 'redgreen'
 
 class RulesTest < Test::Unit::TestCase
   def test_givee_not_self
