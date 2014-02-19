@@ -12,13 +12,9 @@ class Redpoint
 
   def runner
     while @blackhawks2010.print_and_ask(@year).eql?(1)
-
       self.start_new_year
-
       until @giver.nil?
-
         until @givee.nil?
-
           if Rules.givee_not_self(@giver, @givee)
             if Rules.givee_not_recip(@giver, @givee, @blackhawks2010, @year)
               if Rules.givee_not_repeat(@giver, @givee, @blackhawks2010, @year)
@@ -32,15 +28,10 @@ class Redpoint
           else
             @givee = self.givee_is_failure
           end
-
         end
-
         self.select_new_giver
-
       end
-
       puts
-
     end
 
     puts
