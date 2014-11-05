@@ -68,6 +68,3 @@ class Redpoint
     @givee_hat.draw_puck
   end
 end
-
-blackhawk_runner = Redpoint.new
-blackhawk_runner.runner
