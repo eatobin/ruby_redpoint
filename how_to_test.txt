@@ -1,0 +1,3 @@
+How to runn all all tests in the directory at once:
+
+~/ruby_projects/ruby_redpoint/src/test$ testrb
