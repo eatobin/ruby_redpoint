@@ -1,27 +1,50 @@
 class Roster
-  attr_reader(:roster_list)
+  attr_reader(:team_name, :first_year, :roster_list)
 
   def initialize
-    @roster_list = {
-        :TroBro => Player.new('Troy Brouwer', :DavBol),
-        :AdaBur => Player.new('Adam Burish', :DunKei),
-        :AndLad => Player.new('Andrew Ladd', :JoeQue),
-        :AntNie => Player.new('Antti Niemi', :JonToe),
-        :BreSea => Player.new('Brent Seabrook', :KriVer),
-        :BryBic => Player.new('Bryan Bickell', :MarHos),
-        :BriCam => Player.new('Brian Campbell', :NikHja),
-        :CriHue => Player.new('Cristobal Huet', :PatKan),
-        :DavBol => Player.new('Dave Bolland', :PatSha),
-        :DunKei => Player.new('Duncan Keith', :TomKop),
-        :JoeQue => Player.new('Joel Quenneville', :TroBro),
-        :JonToe => Player.new('Jonathan Toews', :AdaBur),
-        :KriVer => Player.new('Kris Versteeg', :AndLad),
-        :MarHos => Player.new('Marian Hossa', :AntNie),
-        :NikHja => Player.new('Niklas Hjalmarsson', :BreSea),
-        :PatKan => Player.new('Patrick Kane', :BryBic),
-        :PatSha => Player.new('Patrick Sharp', :BriCam),
-        :TomKop => Player.new('Tomas Kopecky', :CriHue)
+    # define an array to hold the Person records
+    people = Array.new
+
+# open the csv file
+    f = File.open("people.csv", "r")
+
+# loop through each record in the csv file, adding
+# each record to our array.
+    f.each_line { |line|
+
+      # each line has fields separated by commas, so split those fields
+      fields = line.split(',')
+
+      # create a new Person
+      p = Person.new
+
+      # do a little work here to get rid of double-quotes and blanks
+      p.last_name = fields[0].tr_s('"', '').strip
+      p.first_name = fields[1].tr_s('"', '').strip
+      p.city = fields[2].tr_s('"', '').strip
+      people.push(p)
     }
+
+    # @roster_list = {
+    #     :TroBro => Player.new('Troy Brouwer', :DavBol),
+    #     :AdaBur => Player.new('Adam Burish', :DunKei),
+    #     :AndLad => Player.new('Andrew Ladd', :JoeQue),
+    #     :AntNie => Player.new('Antti Niemi', :JonToe),
+    #     :BreSea => Player.new('Brent Seabrook', :KriVer),
+    #     :BryBic => Player.new('Bryan Bickell', :MarHos),
+    #     :BriCam => Player.new('Brian Campbell', :NikHja),
+    #     :CriHue => Player.new('Cristobal Huet', :PatKan),
+    #     :DavBol => Player.new('Dave Bolland', :PatSha),
+    #     :DunKei => Player.new('Duncan Keith', :TomKop),
+    #     :JoeQue => Player.new('Joel Quenneville', :TroBro),
+    #     :JonToe => Player.new('Jonathan Toews', :AdaBur),
+    #     :KriVer => Player.new('Kris Versteeg', :AndLad),
+    #     :MarHos => Player.new('Marian Hossa', :AntNie),
+    #     :NikHja => Player.new('Niklas Hjalmarsson', :BreSea),
+    #     :PatKan => Player.new('Patrick Kane', :BryBic),
+    #     :PatSha => Player.new('Patrick Sharp', :BriCam),
+    #     :TomKop => Player.new('Tomas Kopecky', :CriHue)
+    # }
   end
 
   private
