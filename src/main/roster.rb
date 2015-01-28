@@ -15,9 +15,6 @@ class Roster
         end
       }
       f.close
-        # p(@team_name)
-        # p(@first_year)
-        # p(@roster_list)
     rescue
       puts 'File Read error here!'
     end
@@ -36,24 +33,40 @@ class Roster
       roles[giver] = giver_code_year_zero
       @gift_history << roles
     end
-
-    #   def add_givee_code(givee_code)
-    #     @past_givee_codes << givee_code
-    #   end
-    #
-    #   def return_givee_code(gift_year)
-    #     @past_givee_codes.fetch(gift_year)
-    #   end
-    #
-    #   def set_givee_code(givee_code, year)
-    #     @past_givee_codes[year] = givee_code
-    #   end
   end
-  #
-  # public
-  # def return_player(player_code)
-  #   @roster_list.fetch(player_code)
-  # end
+
+  def get_player(player_code)
+    @roster_list.fetch(player_code, nil)
+  end
+
+  def get_player_name(player_code)
+    if get_player(player_code).nil?
+      nil
+    else
+      get_player(player_code).player_name
+    end
+  end
+
+  def get_roled_player_code(player_code, gift_year, role)
+    if get_player(player_code).nil?
+      nil
+    else
+      get_player(player_code).gift_history[gift_year][role]
+    end
+  end
+
+  def set_roled_player_code(player_code, setee_code, gift_year, role)
+    if get_player(player_code).nil?
+      nil
+    else
+      roles = get_player(player_code).gift_history[gift_year]
+      roles[role] = setee_code
+      get_player(player_code).gift_history[gift_year] = roles
+      get_player(player_code).gift_history[gift_year][role]
+    end
+  end
+
+
   #
   # def set_givee_code(player_code, givee_code, year)
   #   self.return_player(player_code).set_givee_code(givee_code, year)
