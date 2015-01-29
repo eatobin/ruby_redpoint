@@ -28,14 +28,15 @@ class RosterTest < Test::Unit::TestCase
     assert_equal(:PatSha, blackhawks2010.set_roled_player_code(:AdaBur, :PatSha, 0, giver))
     assert_equal(:PatSha, blackhawks2010.get_roled_player_code(:AdaBur, 0, giver))
   end
-  #
-  # def test_add_new_year
-  #   blackhawks2010 = Roster.new
-  #   blackhawks2010.add_new_year
-  #   assert_equal(:DunKei, blackhawks2010.return_givee_code(:AdaBur, 0))
-  #   assert_equal(:none, blackhawks2010.return_givee_code(:AdaBur, 1))
-  #   assert_equal(:none, blackhawks2010.return_givee_code(:PatSha, 1))
-  # end
+
+  def test_add_new_year
+    givee = 0
+    blackhawks2010 = Roster.new('../../blackhawks2010.txt')
+    assert_equal(:DunKei, blackhawks2010.get_roled_player_code(:AdaBur, 0, givee))
+    blackhawks2010.add_new_year
+    assert_equal(:none, blackhawks2010.get_roled_player_code(:AdaBur, 1, givee))
+    assert_equal(:none, blackhawks2010.get_roled_player_code(:PatSha, 1, givee))
+  end
   #
   # def test_print_giving_roster
   #   blackhawks2010 = Roster.new

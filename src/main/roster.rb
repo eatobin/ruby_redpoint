@@ -66,6 +66,11 @@ class Roster
     end
   end
 
+  def add_new_year
+    @roster_list.each_value do |player|
+      player.gift_history << [:none, :none]
+    end
+  end
 
   #
   # def set_givee_code(player_code, givee_code, year)
@@ -74,12 +79,6 @@ class Roster
   #
   # def return_givee_code(player_code, year)
   #   self.return_player(player_code).return_givee_code(year)
-  # end
-  #
-  # def add_new_year
-  #   @roster_list.each_value do |player|
-  #     player.add_givee_code(:none)
-  #   end
   # end
   #
   # def giving_roster_report_string(year)
