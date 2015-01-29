@@ -26,11 +26,11 @@ class Roster
     def initialize(player_name, givee_code_year_zero, giver_code_year_zero)
       @player_name = player_name
       @gift_history = Array.new
-      roles = Array.new
-      givee = 0
-      giver = 1
-      roles[givee] = givee_code_year_zero
-      roles[giver] = giver_code_year_zero
+      roles = Hash.new
+      # givee = 0
+      # giver = 1
+      roles[:givee] = givee_code_year_zero
+      roles[:giver] = giver_code_year_zero
       @gift_history << roles
     end
   end
