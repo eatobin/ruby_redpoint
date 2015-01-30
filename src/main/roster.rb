@@ -27,8 +27,6 @@ class Roster
       @player_name = player_name
       @gift_history = Array.new
       roles = Hash.new
-      # givee = 0
-      # giver = 1
       roles[:givee] = givee_code_year_zero
       roles[:giver] = giver_code_year_zero
       @gift_history << roles
@@ -68,20 +66,37 @@ class Roster
 
   def add_new_year
     @roster_list.each_value do |player|
-      player.gift_history << [:none, :none]
+      player.gift_history << {:givee => :none, :giver => :none}
     end
   end
 
-  #
-  # def set_givee_code(player_code, givee_code, year)
-  #   self.return_player(player_code).set_givee_code(givee_code, year)
-  # end
-  #
-  # def return_givee_code(player_code, year)
-  #   self.return_player(player_code).return_givee_code(year)
-  # end
-  #
-  # def giving_roster_report_string(year)
+  def get_roster_list_codes
+    @roster_list.keys
+  end
+
+  def print_giving_roster(gift_year)
+    no_givee = Array.new
+    no_giver = Array.new
+
+    puts @team_name + ' - Year ' + (@first_year.to_i + gift_year).to_s + ' Gifts:'
+
+    @roster_list.keys.sort.each do |player_code|
+      player_name = get_player_name(player_code)
+      givee_code = get_roled_player_code(player_code, gift_year, :givee)
+      giver_code = get_roled_player_code(player_code, gift_year, :giver)
+
+      if givee_code.equal?(:none)
+        no_givee << player_code
+      else
+        puts player_name + ' is buying for ' + get_player_name(givee_code)
+      end
+      if giver_code.equal?(:none)
+        no_giver << player_code
+      end
+    end
+  end
+
+  # def giving_roster_report_string(gift_year)
   #   rr = String.new
   #   Hash[@roster_list.sort_by { |player_code| player_code }].each_value do |player|
   #     player_name = player.player_name
