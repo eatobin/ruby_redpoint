@@ -94,6 +94,16 @@ class Roster
         no_giver << player_code
       end
     end
+
+    unless no_givee.empty? && no_giver.empty?
+      puts
+      puts "There is a logic error in this year's pairings."
+      puts 'Do you see it?'
+      puts "If not... call me and I'll explain!"
+      puts
+      no_givee.each { |player_code| get_player(player_code) + ' is giving to no one.' }
+      no_giver.each { |player_code| get_player(player_code) + ' is receiving from no one.' }
+    end
   end
 
   # def giving_roster_report_string(gift_year)
