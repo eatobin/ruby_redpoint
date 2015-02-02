@@ -45,22 +45,41 @@ class Roster
     end
   end
 
-  def get_roled_player_code(player_code, gift_year, role)
+  def get_givee_code(player_code, gift_year)
     if get_player(player_code).nil?
       nil
     else
-      get_player(player_code).gift_history[gift_year][role]
+      get_player(player_code).gift_history[gift_year][:givee]
     end
   end
 
-  def set_roled_player_code(player_code, setee_code, gift_year, role)
+  def set_givee_code(player_code, setee_code, gift_year)
     if get_player(player_code).nil?
       nil
     else
       roles = get_player(player_code).gift_history[gift_year]
-      roles[role] = setee_code
+      roles[:givee] = setee_code
       get_player(player_code).gift_history[gift_year] = roles
-      get_player(player_code).gift_history[gift_year][role]
+      get_player(player_code).gift_history[gift_year][:givee]
+    end
+  end
+
+  def get_giver_code(player_code, gift_year)
+    if get_player(player_code).nil?
+      nil
+    else
+      get_player(player_code).gift_history[gift_year][:giver]
+    end
+  end
+
+  def set_giver_code(player_code, setee_code, gift_year)
+    if get_player(player_code).nil?
+      nil
+    else
+      roles = get_player(player_code).gift_history[gift_year]
+      roles[:giver] = setee_code
+      get_player(player_code).gift_history[gift_year] = roles
+      get_player(player_code).gift_history[gift_year][:giver]
     end
   end
 
@@ -82,13 +101,18 @@ class Roster
 
     @roster_list.keys.sort.each do |player_code|
       player_name = get_player_name(player_code)
-      givee_code = get_roled_player_code(player_code, gift_year, :givee)
-      giver_code = get_roled_player_code(player_code, gift_year, :giver)
+      givee_code = get_givee_code(player_code, gift_year)
+      giver_code = get_giver_code(player_code, gift_year)
 
       if givee_code.equal?(:none)
         no_givee << player_code
       else
-        puts player_name + ' is buying for ' + get_player_name(givee_code)
+        if get_player(givee_code).nil?
+          givee_name = 'WHOA - ERROR HERE!'
+        else
+          givee_name = get_player_name(givee_code)
+        end
+        puts player_name + ' is buying for ' + givee_name
       end
       if giver_code.equal?(:none)
         no_giver << player_code
@@ -101,31 +125,8 @@ class Roster
       puts 'Do you see it?'
       puts "If not... call me and I'll explain!"
       puts
-      no_givee.each { |player_code| get_player(player_code) + ' is giving to no one.' }
-      no_giver.each { |player_code| get_player(player_code) + ' is receiving from no one.' }
+      no_givee.each { |player_code| puts get_player_name(player_code) + ' is giving to no one.' }
+      no_giver.each { |player_code| puts get_player_name(player_code) + ' is receiving from no one.' }
     end
   end
-
-  # def giving_roster_report_string(gift_year)
-  #   rr = String.new
-  #   Hash[@roster_list.sort_by { |player_code| player_code }].each_value do |player|
-  #     player_name = player.player_name
-  #     givee_code = player.return_givee_code(year)
-  #     if givee_code.eql?(:none)
-  #       givee_name = '...nobody!! (last giver/givee pairing and a test failed - a puzzle logic error)'
-  #     else
-  #       givee_name = self.return_player(givee_code).player_name
-  #     end
-  #     rr << player_name + " is buying for " + givee_name + "\n"
-  #   end
-  #   rr
-  # end
-  #
-  # def print_and_ask(year)
-  #   puts "Year #{year} Gifts:"
-  #   puts self.giving_roster_report_string(year)
-  #   puts
-  #   print 'Continue? (1 = yes, 0 = no): '
-  #   gets.chomp.to_i
-  # end
 end
