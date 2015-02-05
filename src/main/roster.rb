@@ -1,20 +1,19 @@
+require 'csv'
+
 class Roster
   attr_reader(:team_name, :first_year, :roster_list)
 
   def initialize(file_name)
     @roster_list = Hash.new
     begin
-      f = File.open(file_name, 'r')
-      f.each_line { |line|
-        fields = line.split(',')
+      CSV.foreach(file_name) do |fields|
         if fields.length == 2
           @team_name = fields[0].strip
           @first_year = fields[1].strip
         else
           @roster_list[fields[0].strip.to_sym] = Player.new(fields[1].strip, fields[2].strip.to_sym, fields[3].strip.to_sym)
         end
-      }
-      f.close
+      end
     rescue
       puts 'File Read error here!'
     end
