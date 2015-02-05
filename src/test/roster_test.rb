@@ -51,7 +51,7 @@ class RosterTest < Test::Unit::TestCase
     assert_equal('Blackhawks', @blackhawks2010.team_name)
   end
 
-  def test_First_year
+  def test_first_year
     assert_equal('2010', @blackhawks2010.first_year)
   end
 
