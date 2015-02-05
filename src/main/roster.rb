@@ -54,7 +54,7 @@ class Roster
   end
 
   def set_givee_code(player_code, setee_code, gift_year)
-    if get_player(player_code).nil?
+    if get_player(player_code).nil? || get_player_name(setee_code).nil?
       nil
     else
       roles = get_player(player_code).gift_history[gift_year]
@@ -73,7 +73,7 @@ class Roster
   end
 
   def set_giver_code(player_code, setee_code, gift_year)
-    if get_player(player_code).nil?
+    if get_player(player_code).nil? || get_player_name(setee_code).nil?
       nil
     else
       roles = get_player(player_code).gift_history[gift_year]
@@ -87,10 +87,6 @@ class Roster
     @roster_list.each_value do |player|
       player.gift_history << {:givee => :none, :giver => :none}
     end
-  end
-
-  def get_roster_list_codes
-    @roster_list.keys
   end
 
   def print_giving_roster(gift_year)
@@ -107,12 +103,7 @@ class Roster
       if givee_code.equal?(:none)
         no_givee << player_code
       else
-        if get_player(givee_code).nil?
-          givee_name = 'WHOA - ERROR HERE!'
-        else
-          givee_name = get_player_name(givee_code)
-        end
-        puts player_name + ' is buying for ' + givee_name
+        puts player_name + ' is buying for ' + get_player_name(givee_code)
       end
       if giver_code.equal?(:none)
         no_giver << player_code
