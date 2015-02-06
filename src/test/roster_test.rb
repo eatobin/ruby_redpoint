@@ -7,12 +7,6 @@ class RosterTest < Test::Unit::TestCase
     @blackhawks2010 = Roster.new('../../blackhawks2010.txt')
   end
 
-  def test_get_player_name
-    assert_equal(nil, @blackhawks2010.get_player_name(:xxx))
-    assert_equal('Adam Burish', @blackhawks2010.get_player_name(:AdaBur))
-    assert_equal('Troy Brouwer', @blackhawks2010.get_player_name(:TroBro))
-  end
-
   def test_get_givee_code
     assert_equal(nil, @blackhawks2010.get_givee_code(:xxx, 0))
     assert_equal(:DunKei, @blackhawks2010.get_givee_code(:AdaBur, 0))

@@ -7,7 +7,7 @@ class Rules
   end
 
   def self.givee_not_recip(giver_code, givee_code, roster, this_year)
-    givee_giving_to = roster.return_givee_code(givee_code, this_year)
+    givee_giving_to = roster.get_givee_code(givee_code, this_year)
     !(giver_code == givee_giving_to)
   end
 
@@ -15,7 +15,7 @@ class Rules
     result = true
     counter = this_year - 1
     while (counter >= 0) && (counter >= (this_year - 4))
-      givee_in_year = roster.return_givee_code(giver_code, counter)
+      givee_in_year = roster.get_givee_code(giver_code, counter)
       if givee_code == givee_in_year
         result = false
       end

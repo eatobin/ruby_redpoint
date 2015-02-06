@@ -36,14 +36,6 @@ class Roster
     @roster_list.fetch(player_code, nil)
   end
 
-  def get_player_name(player_code)
-    if get_player(player_code).nil?
-      nil
-    else
-      get_player(player_code).player_name
-    end
-  end
-
   def get_givee_code(player_code, gift_year)
     if get_player(player_code).nil?
       nil
@@ -53,7 +45,7 @@ class Roster
   end
 
   def set_givee_code(player_code, setee_code, gift_year)
-    if get_player(player_code).nil? || get_player_name(setee_code).nil?
+    if get_player(player_code).nil? || get_player(setee_code).nil?
       nil
     else
       roles = get_player(player_code).gift_history[gift_year]
@@ -72,7 +64,7 @@ class Roster
   end
 
   def set_giver_code(player_code, setee_code, gift_year)
-    if get_player(player_code).nil? || get_player_name(setee_code).nil?
+    if get_player(player_code).nil? || get_player(setee_code).nil?
       nil
     else
       roles = get_player(player_code).gift_history[gift_year]
@@ -95,14 +87,15 @@ class Roster
     puts @team_name + ' - Year ' + (@first_year.to_i + gift_year).to_s + ' Gifts:'
 
     @roster_list.keys.sort.each do |player_code|
-      player_name = get_player_name(player_code)
+      player_name = get_player(player_code).player_name
+      # player_name = get_player_name(player_code)
       givee_code = get_givee_code(player_code, gift_year)
       giver_code = get_giver_code(player_code, gift_year)
 
       if givee_code.equal?(:none)
         no_givee << player_code
       else
-        puts player_name + ' is buying for ' + get_player_name(givee_code)
+        puts player_name + ' is buying for ' + get_player(givee_code).player_name
       end
       if giver_code.equal?(:none)
         no_giver << player_code
@@ -115,8 +108,8 @@ class Roster
       puts 'Do you see it?'
       puts "If not... call me and I'll explain!"
       puts
-      no_givee.each { |player_code| puts get_player_name(player_code) + ' is giving to no one.' }
-      no_giver.each { |player_code| puts get_player_name(player_code) + ' is receiving from no one.' }
+      no_givee.each { |player_code| puts get_player(player_code).player_name + ' is giving to no one.' }
+      no_giver.each { |player_code| puts get_player(player_code).player_name + ' is receiving from no one.' }
     end
   end
 end
