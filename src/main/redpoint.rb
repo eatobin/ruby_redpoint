@@ -11,7 +11,6 @@ class Redpoint
   end
 
   def runner
-    # puts print_and_ask(@year).downcase.eql?('q')
     until print_and_ask(@year).downcase.eql?('q')
       self.start_new_year
       until @giver.nil?
@@ -19,25 +18,10 @@ class Redpoint
           if Rules.givee_not_self(@giver, @givee) &&
               Rules.givee_not_recip(@giver, @givee, @roster, @year) &&
               Rules.givee_not_repeat(@giver, @givee, @roster, @year)
-            givee_is_success
+            @givee = self.givee_is_success
           else
-            givee_is_failure
+            @givee = self.givee_is_failure
           end
-
-
-          # if Rules.givee_not_self(@giver, @givee)
-          #   if Rules.givee_not_recip(@giver, @givee, @roster, @year)
-          #     if Rules.givee_not_repeat(@giver, @givee, @roster, @year)
-          #       @givee = self.givee_is_success
-          #     else
-          #       @givee = self.givee_is_failure
-          #     end
-          #   else
-          #     @givee = self.givee_is_failure
-          #   end
-          # else
-          #   @givee = self.givee_is_failure
-          # end
         end
         self.select_new_giver
       end
